@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  /* Editorial serif for headings */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  /* Clean modern sans for body & UI */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Palette — warm café tones */
+  --color-cream: #f6f0e7;
+  --color-cream-light: #fbf8f2;
+  --color-parchment: #efe7d9;
+  --color-sand: #e6d9c3;
+  --color-latte: #d8c7ab;
+  --color-caramel: #a9703b;
+  --color-caramel-dark: #8a5b2c;
+  --color-espresso: #4a2e1d;
+  --color-coffee: #301d10;
+  --color-charcoal: #1c130b;
+  --color-moss: #5c6647;
+  --color-line: #ddd0ba;
+  --color-muted: #7d6852;
+
+  /* Semantic */
+  --color-background: var(--color-cream);
+  --color-foreground: #2a1b10;
+  --color-background-alt: var(--color-parchment);
+  --color-muted-foreground: var(--color-muted);
+
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-soft: 0 18px 40px -24px rgb(59 36 18 / 0.3);
+  --shadow-lift: 0 28px 60px -28px rgb(59 36 18 / 0.4);
+
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Focus visibility */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-caramel);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-caramel);
+  color: var(--color-cream-light);
+}
+
+/* Marquee used in announcement / strips */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbar for a refined feel */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-parchment);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-latte);
+    border-radius: 9999px;
+    border: 2px solid var(--color-parchment);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-caramel);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
