@@ -4,23 +4,22 @@ import { cn } from "@/lib/cn";
 import type { ReactNode } from "react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-caramel disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-bright disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-espresso text-cream-light hover:bg-coffee active:bg-charcoal shadow-soft hover:shadow-lift",
-        accent:
-          "bg-caramel text-cream-light hover:bg-caramel-dark active:bg-caramel-dark shadow-soft hover:shadow-lift",
+          "bg-primary text-white hover:bg-primary-bright shadow-glow",
         outline:
-          "border border-espresso/30 bg-transparent text-espresso hover:border-espresso hover:bg-espresso hover:text-cream-light",
-        "outline-light":
-          "border border-cream/30 bg-transparent text-cream-light hover:border-cream-light hover:bg-cream-light hover:text-espresso",
+          "border border-line-strong bg-surface/40 text-foreground hover:border-primary hover:text-primary hover:bg-primary-soft",
         ghost:
-          "bg-transparent text-espresso hover:bg-espresso/5",
-        light:
-          "bg-cream-light text-espresso hover:bg-white active:bg-parchment shadow-soft",
-        link: "text-espresso underline-offset-4 hover:text-caramel hover:underline",
+          "bg-transparent text-muted hover:text-foreground hover:bg-surface-2",
+        soft:
+          "bg-primary-soft text-primary-bright hover:bg-primary/20",
+        "outline-dark":
+          "border border-white/15 bg-transparent text-white hover:border-white hover:bg-white/10",
+        white:
+          "bg-foreground text-background hover:bg-white",
       },
       size: {
         sm: "h-10 px-5 text-sm",
@@ -40,6 +39,7 @@ type ButtonBaseProps = VariantProps<typeof buttonVariants> & {
   className?: string;
   children: ReactNode;
   ariaLabel?: string;
+  download?: boolean;
 };
 
 type ButtonAsLink = ButtonBaseProps & {
@@ -59,20 +59,20 @@ type ButtonAsButton = ButtonBaseProps & {
 type ButtonProps = ButtonAsLink | ButtonAsButton;
 
 export function Button(props: ButtonProps) {
-  const { variant, size, className, children, ariaLabel } = props;
+  const { variant, size, className, children, ariaLabel, download } = props;
 
   const classes = cn(buttonVariants({ variant, size }), className);
 
   if (props.href) {
     const { href, external, onClick } = props;
-    if (external) {
+    if (external || download) {
       return (
         <a
           href={href}
           aria-label={ariaLabel}
           onClick={onClick}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(download ? { download: true } : {})}
+          {...(!download ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className={classes}
         >
           {children}

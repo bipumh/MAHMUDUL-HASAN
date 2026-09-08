@@ -1,15 +1,4 @@
-export type DayHours = {
-  day: string;
-  hours: string;
-  closed?: boolean;
-};
-
-export type HoursSummary = {
-  days: string;
-  hours: string;
-};
-
-export type SocialLink = {
+export type NavLink = {
   label: string;
   href: string;
 };
@@ -17,60 +6,58 @@ export type SocialLink = {
 /**
  * Site-wide configuration.
  *
- * NOTE: All contact details below are fictional/demo values for this showcase.
- * Replace them with the real Brew & Crumb details before going to production.
+ * @note `url` is a placeholder canonical domain. Replace it with the real
+ * public domain before deploying to avoid incorrect canonical/OG/sitemap URLs.
+ *
+ * @todo Place the CV PDF at /public/MD-Mahmudul-Hasan-CV.pdf.
+ *   The download buttons across the site link to `cvHref`. Once the file is
+ *   added, downloading works as-is; no code change is required.
  */
 export const site = {
-  name: "Brew & Crumb",
-  legalName: "Brew & Crumb Café & Bakery",
-  tagline: "Coffee, freshly baked, beautifully made.",
+  name: "MD. Mahmudul Hasan",
+  shortName: "MH",
+  legalName: "MD. Mahmudul Hasan",
+  title: "IT & Cybersecurity Leader",
+  url: "https://mdmahmudulhasan.com",
   description:
-    "Brew & Crumb is a premium café and bakery in Gulshan, Dhaka — serving slow-brewed coffee, freshly baked bread and pastries, and custom celebration cakes in a warm, welcoming space.",
-  foundedYear: 2016,
-  url: "https://brewandcrumb.com",
-  neighborhood: "Gulshan 1",
-  city: "Dhaka",
-  country: "Bangladesh",
-  address: "House 24, Road 11, Gulshan 1, Dhaka 1212, Bangladesh",
-  phone: "+880 1712-345-678",
-  phoneHref: "tel:+8801712345678",
-  whatsapp: "+880 1712-345-678",
-  whatsappHref: "https://wa.me/8801712345678",
-  email: "hello@brewandcrumb.com",
-  emailHref: "mailto:hello@brewandcrumb.com",
-  socials: [
-    { label: "Instagram", href: "https://instagram.com/brewandcrumb" },
-    { label: "Facebook", href: "https://facebook.com/brewandcrumb" },
-    { label: "TikTok", href: "https://tiktok.com/@brewandcrumb" },
-  ] as SocialLink[],
-  hours: [
-    { day: "Monday", hours: "7:30 AM – 10:00 PM" },
-    { day: "Tuesday", hours: "7:30 AM – 10:00 PM" },
-    { day: "Wednesday", hours: "7:30 AM – 10:00 PM" },
-    { day: "Thursday", hours: "7:30 AM – 10:00 PM" },
-    { day: "Friday", hours: "8:00 AM – 11:00 PM" },
-    { day: "Saturday", hours: "8:00 AM – 11:00 PM" },
-    { day: "Sunday", hours: "8:00 AM – 11:00 PM" },
-  ] as DayHours[],
-  hoursSummary: [
-    { days: "Monday – Thursday", hours: "7:30 AM – 10:00 PM" },
-    { days: "Friday – Sunday", hours: "8:00 AM – 11:00 PM" },
-  ] as HoursSummary[],
-  mapEmbedUrl:
-    "https://www.google.com/maps?q=Gulshan+1,+Dhaka,+Bangladesh&output=embed",
-  mapDirectionsUrl: "https://www.google.com/maps/search/?api=1&query=Brew+%26+Crumb+Gulshan+1+Dhaka",
+    "MD. Mahmudul Hasan is an IT & Cybersecurity Leader with 13+ years directing enterprise IT infrastructure, network engineering, information security, IT service management, and multi-site technology operations across Bangladesh.",
+  location: "Dhaka, Bangladesh",
+  phone: "+880 1712-447013",
+  phoneHref: "tel:+8801712447013",
+  email: "bipu.mh@gmail.com",
+  emailHref: "mailto:bipu.mh@gmail.com",
+  linkedinHref: "https://linkedin.com/in/1bipu",
+  linkedinLabel: "linkedin.com/in/1bipu",
+  youtubeLabel: "Bipu IT Lab",
+  youtubeHref: "https://youtube.com",
+  cvHref: "/MD-Mahmudul-Hasan-CV.pdf",
+  cvDownloadName: "MD-Mahmudul-Hasan-CV.pdf",
+  foundedYear: 2013,
 } as const;
 
-export const navLinks: { label: string; href: string }[] = [
-  { label: "Home", href: "/" },
-  { label: "Menu", href: "/menu" },
-  { label: "Cakes", href: "/cakes" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+export const navLinks: NavLink[] = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Expertise", href: "#expertise" },
+  { label: "Impact", href: "#impact" },
+  { label: "Experience", href: "#experience" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
 ];
 
-export const navPrimaryCta = {
-  label: "Reserve a Table",
-  href: "/reservations",
+export const footerLinks: NavLink[] = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Expertise", href: "#expertise" },
+  { label: "Impact", href: "#impact" },
+  { label: "Experience", href: "#experience" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
+];
+
+export const navCta = {
+  label: "Download CV",
+  href: site.cvHref,
 };

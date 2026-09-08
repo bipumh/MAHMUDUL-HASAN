@@ -16,20 +16,19 @@ export default function Error({
 
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 py-32 text-center">
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-caramel/12 text-caramel">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary-soft text-primary-bright">
         <AlertTriangle aria-hidden className="h-8 w-8" />
       </span>
-      <h1 className="mt-6 font-display text-3xl font-semibold text-espresso sm:text-4xl">
-        Something went slightly off.
+      <h1 className="mt-6 font-display text-3xl font-semibold text-foreground sm:text-4xl">
+        Something went wrong.
       </h1>
       <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-        We hit an unexpected problem while loading this page. Let&apos;s give it
-        another try.
+        A runtime error interrupted this page. Let&apos;s give it another attempt.
       </p>
       <button
         type="button"
         onClick={reset}
-        className="mt-9 inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3 text-sm font-medium text-cream-light transition-colors hover:bg-caramel"
+        className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-bright"
       >
         <RotateCcw aria-hidden className="h-4 w-4" />
         Try again

@@ -1,28 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, Phone, CalendarHeart } from "lucide-react";
-import { Logo } from "@/components/layout/logo";
-import { AnnouncementBar } from "@/components/layout/announcement-bar";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { navLinks, navPrimaryCta, site } from "@/data/site";
+import { navLinks, navCta, site } from "@/data/site";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const [active, setActive] = useState<string>("home");
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll while the mobile menu is open.
+  // Scroll-spy for the single-page anchor navigation.
+  useEffect(() => {
+    if (open) return;
+    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const targets = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (!targets.length) return;
+
+    const callback: IntersectionObserverCallback = (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      }
+    };
+    observer.current = new IntersectionObserver(callback, {
+      rootMargin: "-45% 0px -50% 0px",
+      threshold: 0,
+    });
+    targets.forEach((t) => observer.current?.observe(t));
+    return () => observer.current?.disconnect();
+  }, [open]);
+
+  // Lock body scroll when mobile menu open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -30,7 +47,6 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Close the menu when the Escape key is pressed.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -41,68 +57,76 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <>
-      <header
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b border-line/70 bg-background/80 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent",
+      )}
+    >
+      <div
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled
-            ? "border-b border-line/70 bg-cream/90 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent",
+          "mx-auto flex max-w-7xl items-center justify-between px-5 transition-[height] duration-300 sm:px-8 lg:px-12",
+          scrolled ? "h-16" : "h-20",
         )}
       >
-        <AnnouncementBar hidden={scrolled} />
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-          <Logo />
+        <a href="#home" className="flex items-center gap-3" aria-label="MD. Mahmudul Hasan — Home">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/40 bg-primary-soft font-display text-base font-bold text-primary-bright">
+            {site.shortName}
+          </span>
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="font-display text-[15px] font-semibold tracking-tight text-foreground">
+              MD. Mahmudul Hasan
+            </span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-dim">
+              IT & Cybersecurity Leader
+            </span>
+          </span>
+        </a>
 
-          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-            {navLinks.map((link) => {
-              const active =
-                pathname === link.href ||
-                (link.href !== "/" && pathname.startsWith(link.href));
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={cn(
-                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    active
-                      ? "text-espresso"
-                      : "text-muted hover:text-espresso",
-                  )}
-                >
-                  {link.label}
-                  {active ? (
-                    <span
-                      aria-hidden
-                      className="absolute inset-x-4 -bottom-px h-0.5 rounded-full bg-caramel"
-                    />
-                  ) : null}
-                </Link>
-              );
-            })}
-          </nav>
+        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((link) => {
+            const id = link.href.replace("#", "");
+            const isActive = active === id;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  isActive ? "text-foreground" : "text-muted hover:text-foreground",
+                )}
+              >
+                {link.label}
+                {isActive ? (
+                  <span aria-hidden className="absolute inset-x-3.5 -bottom-0.5 h-px bg-primary/70" />
+                ) : null}
+              </a>
+            );
+          })}
+        </nav>
 
-          <div className="flex items-center gap-2.5">
-            <Button href={navPrimaryCta.href} size="sm" className="hidden sm:inline-flex">
-              <CalendarHeart aria-hidden className="h-4 w-4" />
-              Reserve a Table
-            </Button>
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={open}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-cream-light/70 text-espresso transition-colors hover:border-espresso lg:hidden"
-            >
-              <Menu aria-hidden className="h-5 w-5" />
-            </button>
-          </div>
+        <div className="flex items-center gap-2.5">
+          <Button href={navCta.href} size="sm" download className="hidden sm:inline-flex">
+            <Download aria-hidden className="h-4 w-4" />
+            Download CV
+          </Button>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={open}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-surface-2/70 text-foreground transition-colors hover:border-primary lg:hidden"
+          >
+            <Menu aria-hidden className="h-5 w-5" />
+          </button>
         </div>
-      </header>
+      </div>
 
       <MobileMenu open={open} onClose={() => setOpen(false)} />
-    </>
+    </header>
   );
 }
 
@@ -115,65 +139,61 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
       )}
       aria-hidden={!open}
     >
-      {/* Backdrop */}
       <button
         type="button"
         onClick={onClose}
         aria-label="Close menu"
         tabIndex={open ? 0 : -1}
         className={cn(
-          "absolute inset-0 bg-charcoal/30 backdrop-blur-sm transition-opacity duration-300",
+          "absolute inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300",
           open ? "opacity-100" : "opacity-0",
         )}
       />
 
-      {/* Panel */}
       <div
         className={cn(
-          "absolute inset-y-0 left-0 flex w-[85%] max-w-sm flex-col bg-cream shadow-lift transition-transform duration-300 ease-out",
-          open ? "translate-x-0" : "-translate-x-full",
+          "absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col border-l border-line-strong/70 bg-surface shadow-lift transition-transform duration-300 ease-out",
+          open ? "translate-x-0" : "translate-x-full",
         )}
       >
-        <div className="flex h-20 items-center justify-between border-b border-line/70 px-5 sm:px-7">
-          <Logo onNavigate={onClose} />
+        <div className="flex h-20 items-center justify-between border-b border-line/60 px-6">
+          <span className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/40 bg-primary-soft font-display text-base font-bold text-primary-bright">
+              {site.shortName}
+            </span>
+            <span className="font-display text-[15px] font-semibold tracking-tight text-foreground">
+              MD. Mahmudul Hasan
+            </span>
+          </span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-espresso transition-colors hover:border-espresso"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-foreground transition-colors hover:border-primary"
           >
             <X aria-hidden className="h-5 w-5" />
           </button>
         </div>
 
-        <nav aria-label="Mobile" className="flex flex-col gap-1 px-5 py-6 sm:px-7">
+        <nav aria-label="Mobile" className="flex flex-col gap-1 px-4 py-6">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="rounded-2xl px-3 py-3 font-display text-2xl font-medium text-espresso transition-colors hover:bg-parchment"
+              className="rounded-xl px-3 py-3 font-display text-xl font-medium tracking-tight text-foreground transition-colors hover:bg-surface-2"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
-        <div className="mt-auto space-y-4 border-t border-line/70 px-5 py-6 sm:px-7">
-          <Button href={navPrimaryCta.href} onClick={onClose} className="w-full" size="lg">
-            <CalendarHeart aria-hidden className="h-4 w-4" />
-            Reserve a Table
+        <div className="mt-auto border-t border-line/60 px-5 py-6">
+          <Button href={navCta.href} onClick={onClose} download className="w-full" size="lg">
+            <Download aria-hidden className="h-4 w-4" />
+            Download CV
           </Button>
-          <div className="flex items-center justify-between text-xs text-muted">
-            <span>Mon–Sun · From 7:30 AM</span>
-            <a
-              href={site.phoneHref}
-              className="inline-flex items-center gap-1.5 font-medium text-espresso"
-            >
-              <Phone aria-hidden className="h-4 w-4 text-caramel" />
-              {site.phone}
-            </a>
-          </div>
+          <p className="mt-4 text-center text-xs text-dim">{site.location}</p>
         </div>
       </div>
     </div>

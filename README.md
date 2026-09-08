@@ -1,29 +1,21 @@
-# Brew & Crumb
+# MD. Mahmudul Hasan — IT & Cybersecurity Leader
 
-A premium café and bakery website for **Brew & Crumb** — a specialty coffee roastery and artisan bakery in Gulshan, Dhaka, Bangladesh.
+A premium executive personal website for **MD. Mahmudul Hasan**, an IT & Cybersecurity Leader with 13+ years directing enterprise IT infrastructure, network engineering, information security, IT service management, and multi-site technology operations.
 
 ## Overview
 
-Built with a warm, editorial, premium café aesthetic: large serif display type, generous whitespace, warm cream & espresso palette, rich photography and subtle, respectful motion.
+A single-page, "Digital Command Center" themed executive website: a dark, minimal, technical aesthetic with a conceptual, interactive enterprise topology visual, animated executive metrics, a layered expertise stack, career timeline, certification wall, and a dramatic closing CTA. All content is sourced from the CV and rendered as structured data in `src/data/`.
 
 ### Tech stack
 
-- **Next.js 16** (App Router, TypeScript)
+- **Next.js 16** (App Router, TypeScript, static generation)
 - **Tailwind CSS v4** (design tokens via `@theme`)
-- **Framer Motion** (scroll reveals, page transitions, reduced-motion aware)
+- **Framer Motion** (scroll reveals, counters, reduced-motion aware)
 - **Lucide React** (icons)
-- CMS-ready structured data in `src/data/` for easy later integration
 
-## Pages
+## Sections
 
-- `/` — Home (hero, intro, featured menu, seasonal specials, bakery highlight, atmosphere, testimonials, location/hours, CTAs)
-- `/menu` — Full menu with sticky category navigation
-- `/cakes` — Cake gallery, categories, flavours, sizes, custom info + order form
-- `/gallery` — Filterable masonry gallery
-- `/reservations` — Table reservation form + hours & location
-- `/about` — Brand story, philosophy, values, team
-- `/contact` — Contact info, form, map, social
-- `/privacy` & `/terms` — Legal pages
+Single-page flow: Hero → Executive Metrics → About / Executive Profile → Expertise (stack + capabilities) → AI-Assisted Operations → Security Operations → Measurable Impact → Achievement Stories → Experience (milestones + timeline) → Current Role → Walton Enterprise Scale → Government ICT → Capability Journey → Certifications → Training → Education → Leadership Principles → Contact.
 
 ## Getting started
 
@@ -44,6 +36,6 @@ npm run start
 
 ## Data
 
-All site content lives in `src/data/` (`site.ts`, `menu.ts`, `cakes.ts`, `gallery.ts`, `testimonials.ts`, `about.ts`) so it can be swapped for a CMS later without touching the UI components.
+All content lives in `src/data/`: `site.ts`, `profile.ts`, `experience.ts`, `achievements.ts`, `competencies.ts`, `ai.ts`, `certifications.ts`, `training.ts`, `education.ts`, `government.ts`, `journey.ts`.
 
-> **Note:** Contact details, addresses and reviews are fictional/demo values for this showcase. Replace them with real Brew & Crumb details before going to production.
+> **To do before deploying:** place the CV PDF at `public/MD-Mahmudul-Hasan-CV.pdf` (linked by the site's Download CV buttons), and replace the placeholder canonical domain `https://mdmahmudulhasan.com` and YouTube link in `src/data/site.ts` with the real values.

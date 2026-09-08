@@ -1,48 +1,34 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type BadgeVariant = "vegan" | "vegetarian" | "gluten-free" | "iced" | "hot" | "signature" | "new" | "spicy";
+type BadgeTone = "primary" | "cyan" | "neutral" | "line" | "outline";
 
-const badgeStyles: Record<BadgeVariant, string> = {
-  vegan: "bg-moss/12 text-moss",
-  vegetarian: "bg-moss/12 text-moss",
-  "gluten-free": "bg-moss/12 text-moss",
-  iced: "bg-sky-100 text-sky-800",
-  hot: "bg-caramel/12 text-caramel-dark",
-  signature: "bg-caramel/15 text-caramel-dark",
-  new: "bg-espresso/10 text-espresso",
-  spicy: "bg-red-100 text-red-800",
-};
-
-const badgeLabels: Record<BadgeVariant, string> = {
-  vegan: "Vegan",
-  vegetarian: "Veg",
-  "gluten-free": "GF",
-  iced: "Iced",
-  hot: "Hot",
-  signature: "Signature",
-  new: "New",
-  spicy: "Spicy",
+const toneStyles: Record<BadgeTone, string> = {
+  primary: "bg-primary-soft text-primary-bright border-primary/20",
+  cyan: "bg-cyan-soft text-cyan border-cyan/20",
+  neutral: "bg-surface-3 text-muted border-line-strong",
+  line: "bg-transparent text-dim border-line-strong",
+  outline: "bg-transparent text-muted border-line-strong",
 };
 
 export function Badge({
-  variant,
+  tone = "primary",
   className,
   children,
 }: {
-  variant: BadgeVariant | string;
+  tone?: BadgeTone | string;
   className?: string;
   children?: ReactNode;
 }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide",
-        badgeStyles[variant as BadgeVariant],
+        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]",
+        toneStyles[tone as BadgeTone],
         className,
       )}
     >
-      {children ?? badgeLabels[variant as BadgeVariant]}
+      {children}
     </span>
   );
 }

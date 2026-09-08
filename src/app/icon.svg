@@ -1,12 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="16" fill="#4a2e1d"/>
-  <g fill="none" stroke="#f6f0e7" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 30h24v8a12 12 0 0 1-24 0z"/>
-    <path d="M44 32h4a5 5 0 0 1 0 10h-4"/>
-    <path d="M26 20c0-2-2-2-2-4s2-2 2-4"/>
-    <path d="M34 20c0-2-2-2-2-4s2-2 2-4"/>
-  </g>
-  <circle cx="20" cy="46" r="2.4" fill="#a9703b"/>
-  <circle cx="32" cy="48" r="2.4" fill="#a9703b"/>
-  <circle cx="44" cy="46" r="2.4" fill="#a9703b"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1120"/>
+      <stop offset="1" stop-color="#05070d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6aa2ff"/>
+      <stop offset="0.5" stop-color="#4c8bf5"/>
+      <stop offset="1" stop-color="#2dd4ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="rgba(76,139,245,0.35)" stroke-width="1.5"/>
+  <text x="32" y="41" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="1" fill="url(#accent)">MH</text>
 </svg>
