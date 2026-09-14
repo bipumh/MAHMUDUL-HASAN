@@ -18,7 +18,7 @@ export const site = {
   shortName: "MH",
   legalName: "MD. Mahmudul Hasan",
   title: "IT & Cybersecurity Leader",
-  url: "https://mdmahmudulhasan.com",
+  url: "https://bipumh.github.io/MAHMUDUL-HASAN",
   description:
     "MD. Mahmudul Hasan is an IT & Cybersecurity Leader with 13+ years directing enterprise IT infrastructure, network engineering, information security, IT service management, and multi-site technology operations across Bangladesh.",
   location: "Dhaka, Bangladesh",
@@ -30,7 +30,7 @@ export const site = {
   linkedinLabel: "linkedin.com/in/1bipu",
   youtubeLabel: "Bipu IT Lab",
   youtubeHref: "https://youtube.com",
-  cvHref: "/MD-Mahmudul-Hasan-CV.pdf",
+  cvHref: "/MAHMUDUL-HASAN/MD-Mahmudul-Hasan-CV.pdf",
   cvDownloadName: "MD-Mahmudul-Hasan-CV.pdf",
   foundedYear: 2013,
 } as const;
