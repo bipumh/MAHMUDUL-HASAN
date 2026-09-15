@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-import { navLinks, navCta, site } from "@/data/site";
+import { navLinks } from "@/data/site";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function Navbar() {
+  const { site, cvUrl } = useContent();
+  const externalCv = /^https?:\/\//i.test(cvUrl ?? "");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("home");
@@ -109,9 +112,13 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <Button href={navCta.href} size="sm" download className="hidden sm:inline-flex">
+          <Button href={cvUrl ?? "#"} size="sm" download={!externalCv} external={externalCv} className="hidden sm:inline-flex">
             <Download aria-hidden className="h-4 w-4" />
             Download CV
+          </Button>
+          <Button href="/admin" size="sm" variant="outline" className="hidden sm:inline-flex">
+            <Lock aria-hidden className="h-4 w-4" />
+            Admin Login
           </Button>
           <button
             type="button"
@@ -131,6 +138,8 @@ export function Navbar() {
 }
 
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { site, cvUrl } = useContent();
+  const externalCv = /^https?:\/\//i.test(cvUrl ?? "");
   return (
     <div
       className={cn(
@@ -189,9 +198,13 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
         </nav>
 
         <div className="mt-auto border-t border-line/60 px-5 py-6">
-          <Button href={navCta.href} onClick={onClose} download className="w-full" size="lg">
+          <Button href={cvUrl ?? "#"} onClick={onClose} download={!externalCv} external={externalCv} className="w-full" size="lg">
             <Download aria-hidden className="h-4 w-4" />
             Download CV
+          </Button>
+          <Button href="/admin" onClick={onClose} variant="outline" className="mt-2.5 w-full" size="lg">
+            <Lock aria-hidden className="h-4 w-4" />
+            Admin Login
           </Button>
           <p className="mt-4 text-center text-xs text-dim">{site.location}</p>
         </div>

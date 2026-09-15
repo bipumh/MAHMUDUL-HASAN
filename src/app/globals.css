@@ -8,29 +8,29 @@
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
-  /* Deep near-black / warm charcoal base. */
-  --color-background: #0a0a0b;
-  --color-surface: #0f0f10;
-  --color-surface-2: #141415;
-  --color-surface-3: #1a191a;
-  --color-elevated: #201f21;
+  /* Warm graphite / espresso architectural base. */
+  --color-background: #171411;
+  --color-surface: #201a16;
+  --color-surface-2: #231d17;
+  --color-surface-3: #2a211a;
+  --color-elevated: #332a20;
 
-  /* Off-white / gray text system. */
-  --color-foreground: #e9eaec;
-  --color-muted: #9aa0a6;
-  --color-dim: #6a7076;
-  --color-faint: #494f55;
+  /* Champagne / warm-gray text system. */
+  --color-foreground: #ece6db;
+  --color-muted: #a89e8e;
+  --color-dim: #7a7161;
+  --color-faint: #564e42;
 
-  /* Hairlines. */
-  --color-line: rgba(255, 255, 255, 0.07);
-  --color-line-strong: rgba(255, 255, 255, 0.13);
+  /* Hairlines — warm champagne. */
+  --color-line: rgba(236, 226, 210, 0.07);
+  --color-line-strong: rgba(236, 226, 210, 0.13);
 
-  /* Muted steel blue — the single accent, used selectively. */
-  --color-primary: #5c78a6;
-  --color-primary-bright: #8399bd;
-  --color-primary-soft: rgba(92, 120, 166, 0.10);
-  --color-cyan: #7188a2;
-  --color-cyan-soft: rgba(113, 136, 162, 0.10);
+  /* Burnished copper — the single warm accent, used selectively. */
+  --color-primary: #c47a44;
+  --color-primary-bright: #e0a56f;
+  --color-primary-soft: rgba(196, 122, 68, 0.12);
+  --color-cyan: #b5885e;
+  --color-cyan-soft: rgba(181, 136, 94, 0.10);
 
   --radius-md: 0.625rem;
   --radius-lg: 1rem;
@@ -38,7 +38,7 @@
 
   --shadow-soft: 0 24px 60px -40px rgb(0 0 0 / 0.8);
   --shadow-lift: 0 40px 90px -52px rgb(0 0 0 / 0.9);
-  --shadow-glow: 0 0 0 1px rgb(92 120 166 / 0.16), 0 30px 70px -50px rgb(0 0 0 / 0.9);
+  --shadow-glow: 0 0 0 1px rgb(196 122 68 / 0.18), 0 30px 70px -50px rgb(0 0 0 / 0.9);
 
   --animate-float: float 10s ease-in-out infinite;
   --animate-float-slow: float 16s ease-in-out infinite;
@@ -197,28 +197,28 @@ p {
 
 /* Architectural grid — 12 equal columns, hairline at each column start. */
 .bg-columns {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(236, 226, 210, 0.022) 1px, transparent 1px);
   background-size: calc(100% / 12) 100%;
 }
 
 /* Fine structural grid (decorative only, very faint). */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+    linear-gradient(to right, rgba(236, 226, 210, 0.026) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 226, 210, 0.026) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 .bg-grid-dense {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(236, 226, 210, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 226, 210, 0.02) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* Restrained central light, used behind the hero figure. */
+/* Restrained copper light, used behind the hero figure. */
 .bg-glow {
-  background: radial-gradient(circle at center, rgba(92, 120, 166, 0.09) 0%, rgba(92, 120, 166, 0.02) 42%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(196, 122, 68, 0.28) 0%, rgba(196, 122, 68, 0.09) 42%, transparent 70%);
 }
 
 /* Subtle film grain — a refined, tactile surface texture. */
@@ -233,26 +233,26 @@ p {
     to bottom,
     transparent 0px,
     transparent 4px,
-    rgba(255, 255, 255, 0.018) 5px
+    rgba(236, 226, 210, 0.018) 5px
   );
 }
 
 /* Flat, quiet panel — no glassy blur. */
 .glass {
-  background: linear-gradient(180deg, rgba(24, 28, 33, 0.55) 0%, rgba(15, 18, 21, 0.45) 100%);
+  background: linear-gradient(180deg, rgba(38, 36, 31, 0.55) 0%, rgba(21, 21, 19, 0.45) 100%);
 }
 
-/* Elegant steel gradient for the primary name — off-white → muted. */
+/* Elegant champagne gradient for the primary name — off-white → muted. */
 .text-gradient-steel {
-  background: linear-gradient(180deg, #fbfbfc 0%, #ccd0d5 55%, #9aa1a9 100%);
+  background: linear-gradient(180deg, #f7f3eb 0%, #d8cfbe 55%, #a99e8a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Restrained accent gradient — reads as a subtle highlight, not neon. */
+/* Restrained copper accent gradient — reads as a subtle highlight, not neon. */
 .text-gradient-blue {
-  background: linear-gradient(115deg, #eef1f5 0%, #b3bdcf 45%, #8399bd 100%);
+  background: linear-gradient(115deg, #f4efe6 0%, #ddb88d 45%, #c47a44 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

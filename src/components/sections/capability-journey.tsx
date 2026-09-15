@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { capabilityJourney } from "@/data/journey";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function CapabilityJourney() {
+  const { capabilityJourney } = useContent();
   return (
     <Section id="journey" className="bg-surface/20">
       <SectionHeading

@@ -3,9 +3,21 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
-import { experience, type Role } from "@/data/experience";
+import { useContent } from "@/lib/content/ContentProvider";
 
-const statusLabel: Record<Role["status"], string> = {
+type RoleView = {
+  id: string;
+  period: string;
+  roleTitle: string;
+  company: string;
+  location: string;
+  tenure?: string;
+  status: string;
+  summary?: string;
+  responsibilityGroups: { title: string; items: string[] }[];
+};
+
+const statusLabel: Record<string, string> = {
   current: "Current",
   previous: "Previous",
   earlier: "Earlier",
@@ -46,7 +58,7 @@ function ResponsibilityGroup({
   );
 }
 
-function RoleBlock({ role }: { role: Role }) {
+function RoleBlock({ role }: { role: RoleView }) {
   const isCurrent = role.status === "current";
   return (
     <div className="relative lg:grid lg:grid-cols-12 lg:gap-10">
@@ -126,6 +138,7 @@ function RoleBlock({ role }: { role: Role }) {
 }
 
 export function CareerTimeline() {
+  const { experience } = useContent();
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({

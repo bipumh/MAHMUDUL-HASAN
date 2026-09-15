@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { education, recognition } from "@/data/education";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function EducationSection() {
+  const { education, recognition } = useContent();
   return (
     <Section id="education">
       <SectionHeading

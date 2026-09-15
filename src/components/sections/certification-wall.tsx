@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { certifications } from "@/data/certifications";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function CertificationWall() {
+  const { certifications } = useContent();
   const featured = certifications.filter((c) => c.featured);
   const others = certifications.filter((c) => !c.featured);
 

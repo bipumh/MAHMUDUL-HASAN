@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { trainingCourses } from "@/data/training";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function TrainingSection() {
+  const { trainingCourses } = useContent();
   return (
     <Section id="training" className="bg-surface/20">
       <SectionHeading

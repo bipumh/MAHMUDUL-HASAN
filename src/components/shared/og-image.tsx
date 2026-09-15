@@ -14,9 +14,9 @@ export function buildOgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "90px 100px",
-          backgroundColor: "#05070d",
-          backgroundImage: "linear-gradient(135deg, #05070d 0%, #0b1120 60%, #0e1626 100%)",
-          color: "#e8edf6",
+          backgroundColor: "#171411",
+          backgroundImage: "linear-gradient(135deg, #171411 0%, #201a16 55%, #2a211a 100%)",
+          color: "#ece6db",
           fontFamily: "sans-serif",
           position: "relative",
         }}
@@ -37,9 +37,9 @@ export function buildOgImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "rgba(76,139,245,0.16)",
-              border: "1px solid rgba(76,139,245,0.5)",
-              color: "#a7c4ff",
+              backgroundColor: "rgba(196,122,68,0.16)",
+              border: "1px solid rgba(196,122,68,0.5)",
+              color: "#e0a56f",
               fontSize: 34,
               fontWeight: 700,
             }}
@@ -50,7 +50,7 @@ export function buildOgImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              color: "#94a3b8",
+              color: "#a89e8e",
               fontSize: 24,
               letterSpacing: 2,
               textTransform: "uppercase",
@@ -71,7 +71,7 @@ export function buildOgImage() {
               fontWeight: 800,
               letterSpacing: -2,
               lineHeight: 1.05,
-              backgroundImage: "linear-gradient(120deg, #6aa2ff 0%, #4c8bf5 45%, #2dd4ee 100%)",
+              backgroundImage: "linear-gradient(120deg, #f0e3cd 0%, #ddb88d 45%, #c47a44 100%)",
               backgroundClip: "text",
               color: "transparent",
             }}
@@ -88,7 +88,7 @@ export function buildOgImage() {
             marginTop: 34,
             fontSize: 28,
             fontWeight: 500,
-            color: "#cbd8ea",
+            color: "#d8cfbe",
           }}
         >
           <span
@@ -96,7 +96,7 @@ export function buildOgImage() {
               width: 12,
               height: 12,
               borderRadius: 999,
-              backgroundColor: "#2dd4ee",
+              backgroundColor: "#c47a44",
               display: "flex",
             }}
           />
@@ -109,7 +109,7 @@ export function buildOgImage() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            color: "#64748b",
+            color: "#7a7161",
             fontSize: 20,
             letterSpacing: 1,
           }}

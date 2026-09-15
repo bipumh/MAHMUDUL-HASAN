@@ -44,12 +44,12 @@ export function CommandCenter() {
   const isActive = (n: Node) => hovered !== null && (hovered.id === n.id || neighbors.get(hovered.id)?.has(n.id));
 
   const strokeFor = (n: Node) => {
-    if (reduced && !hovered) return "rgba(255,255,255,0.06)";
+    if (reduced && !hovered) return "rgba(236,226,210,0.16)";
     if (hovered) {
-      if (isActive(n)) return "rgba(131,153,189,0.7)";
-      if (isDimmed(n)) return "rgba(255,255,255,0.03)";
+      if (isActive(n)) return "rgba(224,165,111,0.95)";
+      if (isDimmed(n)) return "rgba(236,226,210,0.08)";
     }
-    return "rgba(255,255,255,0.07)";
+    return "rgba(236,226,210,0.22)";
   };
 
   return (
@@ -70,7 +70,7 @@ export function CommandCenter() {
           cy={0}
           r={178}
           fill="none"
-          stroke="rgba(255,255,255,0.04)"
+          stroke="rgba(236,226,210,0.14)"
           strokeWidth={1}
           animate={reduced ? {} : { rotate: 360 }}
           transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
@@ -81,11 +81,23 @@ export function CommandCenter() {
           cy={0}
           r={158}
           fill="none"
-          stroke="rgba(131,153,189,0.1)"
+          stroke="rgba(196,122,68,0.4)"
           strokeWidth={1}
           strokeDasharray="1 8"
           animate={reduced ? {} : { rotate: -360 }}
           transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "center" }}
+        />
+        <motion.circle
+          cx={0}
+          cy={0}
+          r={140}
+          fill="none"
+          stroke="rgba(236,226,210,0.08)"
+          strokeWidth={1}
+          strokeDasharray="2 10"
+          animate={reduced ? {} : { rotate: 360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
           style={{ transformOrigin: "center" }}
         />
 
@@ -125,7 +137,7 @@ export function CommandCenter() {
             <circle
               key={`f-${n.id}`}
               r={2}
-              fill={hovered && isActive(n) ? "rgba(131,153,189,0.8)" : "rgba(160,178,205,0.35)"}
+              fill={hovered && isActive(n) ? "rgba(224,165,111,1)" : "rgba(212,182,148,0.85)"}
             >
               <animateMotion dur={`${6 + i * 0.8}s`} repeatCount="indefinite" path={`M0,0 L${n.x * 0.82},${n.y * 0.82}`} />
             </circle>
@@ -133,9 +145,10 @@ export function CommandCenter() {
 
         {/* core */}
         <g>
-          <circle cx={0} cy={0} r={7} fill="rgba(233,234,236,0.9)" />
+          <circle cx={0} cy={0} r={13} fill="rgba(196,122,68,0.16)" />
+          <circle cx={0} cy={0} r={8} fill="rgba(245,240,230,1)" />
           {!reduced && (
-            <circle cx={0} cy={0} r={7} fill="none" stroke="rgba(131,153,189,0.6)" className="animate-pulse-ring" />
+            <circle cx={0} cy={0} r={8} fill="none" stroke="rgba(196,122,68,1)" className="animate-pulse-ring" />
           )}
         </g>
 
@@ -152,10 +165,10 @@ export function CommandCenter() {
               <motion.circle
                 cx={n.x}
                 cy={n.y}
-                r={active ? 5.5 : 3.5}
-                fill="rgba(14,16,19,0.9)"
-                stroke={active ? "rgba(131,153,189,0.9)" : "rgba(200,208,216,0.55)"}
-                strokeWidth={1}
+                r={active ? 6 : 4.25}
+                fill="rgba(23,21,18,0.95)"
+                stroke={active ? "rgba(224,165,111,1)" : "rgba(232,222,204,1)"}
+                strokeWidth={1.25}
                 animate={active ? { scale: 1.15 } : {}}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 style={{ transformOrigin: `${n.x}px ${n.y}px` }}
@@ -167,7 +180,7 @@ export function CommandCenter() {
                 fontSize="7"
                 fontFamily={LABEL_FONT}
                 letterSpacing="0.1em"
-                fill={active ? "#e9eaec" : isDimmed(n) ? "rgba(233,234,236,0.2)" : "#9aa0a6"}
+                fill={active ? "#f6f1e8" : isDimmed(n) ? "rgba(236,230,219,0.35)" : "#c9c0b0"}
               >
                 {n.label}
               </text>

@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { governmentProjects, governmentEquipment } from "@/data/government";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function GovernmentProjects() {
+  const { governmentProjects, governmentEquipment } = useContent();
   return (
     <Section id="government" className="bg-surface/20">
       <SectionHeading

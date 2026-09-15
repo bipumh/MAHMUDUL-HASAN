@@ -1,8 +1,11 @@
+"use client";
+
 import { Monogram } from "@/components/shared/monogram";
 import { Reveal } from "@/components/shared/reveal";
-import { profile } from "@/data/profile";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function ExecutiveProfile() {
+  const { profile } = useContent();
   return (
     <Reveal direction="up" className="h-full">
       <div className="relative flex h-full flex-col border-t border-line pt-6">

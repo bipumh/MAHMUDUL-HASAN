@@ -1,10 +1,13 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
 import { cn } from "@/lib/cn";
-import { achievementStories } from "@/data/achievements";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function AchievementStories() {
+  const { achievementStories } = useContent();
   return (
     <Section id="stories" className="bg-surface/20">
       <SectionHeading

@@ -1,11 +1,14 @@
+"use client";
+
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, YouTubeIcon } from "@/components/shared/brand-icons";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/shared/reveal";
-import { site } from "@/data/site";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function Contact() {
+  const { site } = useContent();
   return (
     <section id="contact" className="relative overflow-hidden border-t border-line/70 py-24 sm:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid opacity-30" />

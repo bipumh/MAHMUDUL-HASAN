@@ -1,8 +1,11 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
-import { principles } from "@/data/journey";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function LeadershipPrinciples() {
+  const { principles } = useContent();
   return (
     <Section id="principles" className="bg-surface/20">
       <div className="mx-auto max-w-4xl">

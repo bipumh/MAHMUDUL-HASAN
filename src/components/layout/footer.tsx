@@ -1,8 +1,12 @@
+"use client";
+
 import { Container } from "@/components/ui/container";
 import { LinkedInIcon, YouTubeIcon } from "@/components/shared/brand-icons";
-import { footerLinks, site } from "@/data/site";
+import { footerLinks } from "@/data/site";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function Footer() {
+  const { site } = useContent();
   return (
     <footer className="border-t border-line/60 bg-surface/40">
       <Container className="py-14">

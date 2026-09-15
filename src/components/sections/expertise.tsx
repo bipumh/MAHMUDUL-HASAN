@@ -6,9 +6,11 @@ import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
 import { cn } from "@/lib/cn";
-import { competencyGroups } from "@/data/competencies";
+import { useContent } from "@/lib/content/ContentProvider";
+import { COMPETENCY_ICONS } from "@/lib/content/icons";
 
 export function Expertise() {
+  const { competencyGroups } = useContent();
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -22,7 +24,7 @@ export function Expertise() {
 
       <div className="mt-16 border-t border-line">
         {competencyGroups.map((group, i) => {
-          const Index = group.icon;
+          const Index = COMPETENCY_ICONS[group.icon] ?? COMPETENCY_ICONS.governance;
           const isHovered = hovered === i;
           const isDimmed = hovered !== null && !isHovered;
 

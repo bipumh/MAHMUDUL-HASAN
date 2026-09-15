@@ -6,8 +6,7 @@ import { LinkedInIcon } from "@/components/shared/brand-icons";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { CommandCenter } from "@/components/shared/command-center";
-import { profile } from "@/data/profile";
-import { site } from "@/data/site";
+import { useContent } from "@/lib/content/ContentProvider";
 
 const container: Variants = {
   hidden: {},
@@ -33,6 +32,7 @@ const metadata = [
 ];
 
 export function Hero() {
+  const { profile, site } = useContent();
   const reduced = useReducedMotion();
 
   return (

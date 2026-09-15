@@ -1,9 +1,12 @@
+"use client";
+
 import { Container } from "@/components/ui/container";
 import { Counter } from "@/components/shared/counter";
 import { Reveal } from "@/components/shared/reveal";
-import { executiveMetrics } from "@/data/achievements";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function ExecutiveMetrics() {
+  const { executiveMetrics } = useContent();
   return (
     <section id="metrics" className="relative border-y border-line/60 bg-surface/30">
       <Container className="py-14 sm:py-16">

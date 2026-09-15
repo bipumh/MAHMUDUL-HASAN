@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { careerMilestones } from "@/data/experience";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function CareerMilestones() {
+  const { careerMilestones } = useContent();
   return (
     <div className="relative">
       {/* connector */}

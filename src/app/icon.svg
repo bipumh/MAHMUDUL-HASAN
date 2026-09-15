@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b1120"/>
-      <stop offset="1" stop-color="#05070d"/>
+      <stop offset="0" stop-color="#2a211a"/>
+      <stop offset="1" stop-color="#171411"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6aa2ff"/>
-      <stop offset="0.5" stop-color="#4c8bf5"/>
-      <stop offset="1" stop-color="#2dd4ee"/>
+      <stop offset="0" stop-color="#f0e3cd"/>
+      <stop offset="0.5" stop-color="#ddb88d"/>
+      <stop offset="1" stop-color="#c47a44"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#bg)"/>
-  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="rgba(76,139,245,0.35)" stroke-width="1.5"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="rgba(196,122,68,0.35)" stroke-width="1.5"/>
   <text x="32" y="41" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="1" fill="url(#accent)">MH</text>
 </svg>

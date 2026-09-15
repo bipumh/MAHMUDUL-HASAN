@@ -4,6 +4,7 @@ import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { ContentProvider } from "@/lib/content/ContentProvider";
 import { AppBackground } from "@/components/shared/app-background";
 import { ScrollProgress } from "@/components/shared/scroll-progress";
 import { Cursor } from "@/components/shared/cursor";
@@ -125,9 +126,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             }}
           />
 
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ContentProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ContentProvider>
         </MotionConfig>
       </body>
     </html>

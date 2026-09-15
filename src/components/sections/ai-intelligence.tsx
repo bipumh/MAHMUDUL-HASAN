@@ -5,9 +5,10 @@ import { ChevronDown } from "lucide-react";
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/shared/reveal";
-import { aiFeatures, aiPipeline } from "@/data/ai";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function AiIntelligence() {
+  const { aiFeatures, aiPipeline } = useContent();
   return (
     <Section id="ai" className="bg-surface/20">
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">

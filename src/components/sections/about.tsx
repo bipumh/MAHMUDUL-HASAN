@@ -1,10 +1,13 @@
+"use client";
+
 import { Reveal } from "@/components/shared/reveal";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ExecutiveProfile } from "@/components/sections/executive-profile";
-import { profile } from "@/data/profile";
 import { Section } from "@/components/shared/section";
+import { useContent } from "@/lib/content/ContentProvider";
 
 export function About() {
+  const { profile } = useContent();
   return (
     <Section id="about">
       <SectionHeading

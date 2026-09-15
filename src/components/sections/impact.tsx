@@ -1,9 +1,12 @@
+"use client";
+
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Counter } from "@/components/shared/counter";
 import { Reveal } from "@/components/shared/reveal";
 import { cn } from "@/lib/cn";
-import { impactMetrics, executiveMetrics, type Metric } from "@/data/achievements";
+import { useContent } from "@/lib/content/ContentProvider";
+import type { Metric } from "@/data/achievements";
 
 function Numeral({ m }: { m: Metric }) {
   return (
@@ -45,6 +48,7 @@ function Cell({
 }
 
 export function Impact() {
+  const { impactMetrics, executiveMetrics } = useContent();
   const years = executiveMetrics[0];
   const uptime = impactMetrics[0];
   const users = impactMetrics[6];
