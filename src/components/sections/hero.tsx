@@ -129,7 +129,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-            className="relative flex items-center justify-center lg:col-span-5 lg:-mt-6"
+            className="relative hidden items-center justify-center lg:col-span-5 lg:-mt-6 lg:flex"
           >
 
             <div className="pointer-events-none absolute inset-0 hidden lg:block">

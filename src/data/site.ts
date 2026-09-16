@@ -29,7 +29,7 @@ export const site = {
   linkedinHref: "https://linkedin.com/in/1bipu",
   linkedinLabel: "linkedin.com/in/1bipu",
   youtubeLabel: "Bipu IT Lab",
-  youtubeHref: "https://youtube.com",
+  youtubeHref: "https://www.youtube.com/@bipuitlab/featured",
   cvHref: "/MAHMUDUL-HASAN/MD-Mahmudul-Hasan-CV.pdf",
   cvDownloadName: "MD-Mahmudul-Hasan-CV.pdf",
   foundedYear: 2013,
