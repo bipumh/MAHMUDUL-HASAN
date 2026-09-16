@@ -30,7 +30,7 @@ export function GovernmentProjects() {
                   </span>
                 </span>
               </div>
-              <p className="max-w-[15rem] text-[12px] leading-relaxed text-muted">
+              <p className="max-w-[15rem] text-[13px] leading-relaxed text-muted">
                 {project.description}
               </p>
             </div>

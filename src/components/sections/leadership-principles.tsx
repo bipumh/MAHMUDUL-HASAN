@@ -45,7 +45,7 @@ export function LeadershipPrinciples() {
                   {principle.label}
                 </h3>
               </div>
-              <p className="mt-1.5 pl-8 text-[13px] text-dim">{principle.detail}</p>
+              <p className="mt-1.5 pl-8 text-sm leading-relaxed text-muted">{principle.detail}</p>
             </div>
           </Reveal>
         ))}

@@ -38,7 +38,7 @@ export function EducationSection() {
 
               <div className="sm:col-span-4 sm:text-right">
                 <p className="text-[15px] text-muted">{record.institution}</p>
-                <p className="mt-2 font-mono text-[13px] tracking-[0.06em] text-dim">{record.result}</p>
+                <p className="mt-2 font-mono text-sm tracking-[0.06em] text-muted">{record.result}</p>
               </div>
             </div>
           </Reveal>

@@ -79,7 +79,7 @@ export function Expertise() {
                     >
                       {group.title}
                     </h3>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-dim">
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
                       {group.description}
                     </p>
                   </div>

@@ -17,9 +17,9 @@
 
   /* Champagne / warm-gray text system. */
   --color-foreground: #ece6db;
-  --color-muted: #a89e8e;
-  --color-dim: #7a7161;
-  --color-faint: #564e42;
+  --color-muted: #b6ac99;
+  --color-dim: #978d7c;
+  --color-faint: #7d7365;
 
   /* Hairlines — warm champagne. */
   --color-line: rgba(236, 226, 210, 0.07);

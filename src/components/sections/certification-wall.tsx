@@ -49,7 +49,7 @@ export function CertificationWall() {
                 <span className="text-sm text-muted">{cert.fullName}</span>
               </div>
               <div className="flex items-center gap-6">
-                <span className="hidden max-w-xs text-[13px] leading-snug text-faint md:block">
+                <span className="hidden max-w-xs text-sm leading-relaxed text-muted md:block">
                   {cert.description}
                 </span>
                 <span className="font-mono text-[12px] tracking-[0.16em] text-dim">{cert.year}</span>

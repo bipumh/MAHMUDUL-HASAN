@@ -23,7 +23,7 @@ export function Counter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -8% 0px" });
   const shouldReduce = useReducedMotion();
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView || shouldReduce) return;
@@ -40,12 +40,10 @@ export function Counter({
     return () => cancelAnimationFrame(raf);
   }, [inView, shouldReduce, value, duration]);
 
-  const output = shouldReduce ? value : display;
-
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {formatNumber(output)}
+      {formatNumber(display)}
       {suffix}
     </span>
   );

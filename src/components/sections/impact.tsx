@@ -40,7 +40,7 @@ function Cell({
           {m.label}
         </div>
         {detail && m.detail ? (
-          <p className="mt-2 max-w-xs text-[13px] leading-relaxed text-faint">{m.detail}</p>
+          <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">{m.detail}</p>
         ) : null}
       </div>
     </Reveal>

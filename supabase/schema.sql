@@ -79,3 +79,12 @@ create policy "cv_admin_delete"
     bucket_id = 'cv'
     and exists (select 1 from public.admins where user_id = auth.uid())
   );
+
+
+-- 4. Explicit table grants --------------------------------------------------
+-- PostgREST roles need base privileges on the tables (RLS still filters rows).
+-- `anon` needs SELECT on `admins` so the RLS subquery in `content_read_draft`
+-- can be evaluated without a "permission denied" error.
+grant select on public.portfolio_content to anon, authenticated;
+grant select, insert, update, delete on public.portfolio_content to authenticated;
+grant select on public.admins to anon, authenticated;

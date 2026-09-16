@@ -32,7 +32,7 @@ export function ExecutiveMetrics() {
                 <div className="mt-3 font-mono text-[10px] uppercase leading-snug tracking-[0.16em] text-muted">
                   {m.label}
                 </div>
-                <div className="mt-1 hidden text-xs leading-snug text-faint lg:block">{m.detail}</div>
+                <div className="mt-1 hidden text-[13px] leading-snug text-muted lg:block">{m.detail}</div>
               </div>
             </Reveal>
           ))}
