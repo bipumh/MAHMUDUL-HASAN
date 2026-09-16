@@ -71,7 +71,7 @@ function RoleBlock({ role }: { role: RoleView }) {
           />
           {statusLabel[role.status]}
         </div>
-        <p className="mt-4 font-mono text-[13px] tracking-[0.04em] text-foreground">{role.period}</p>
+        <p className="mt-4 font-mono text-[13px] tracking-[0.04em] text-muted">{role.period}</p>
         <p className="mt-1 text-sm text-dim">{role.location}</p>
         {role.tenure ? (
           <p className="mt-1 font-mono text-[11px] tracking-[0.14em] text-faint">{role.tenure}</p>
@@ -102,7 +102,7 @@ function RoleBlock({ role }: { role: RoleView }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px -8% 0px" }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-2.5 text-lg font-medium leading-snug text-muted"
+          className="mt-2.5 text-lg font-medium leading-snug text-foreground"
         >
           {role.roleTitle}
         </motion.p>

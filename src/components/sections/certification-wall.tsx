@@ -41,19 +41,17 @@ export function CertificationWall() {
       <div className="mt-16 border-t border-line">
         {others.map((cert, i) => (
           <Reveal key={cert.id} delay={i * 0.05} direction="up">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line/70 py-5">
-              <div className="flex items-baseline gap-4">
-                <span className="font-display text-xl font-semibold tracking-tight text-foreground">
-                  {cert.code}
-                </span>
-                <span className="text-sm text-muted">{cert.fullName}</span>
+            <div className="border-b border-line/70 py-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1.5">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+                    {cert.code}
+                  </span>
+                  <span className="text-sm text-muted">{cert.fullName}</span>
+                </div>
+                <span className="shrink-0 font-mono text-[12px] tracking-[0.16em] text-dim">{cert.year}</span>
               </div>
-              <div className="flex items-center gap-6">
-                <span className="hidden max-w-xs text-sm leading-relaxed text-muted md:block">
-                  {cert.description}
-                </span>
-                <span className="font-mono text-[12px] tracking-[0.16em] text-dim">{cert.year}</span>
-              </div>
+              <p className="mt-2.5 max-w-2xl text-sm leading-relaxed text-muted">{cert.description}</p>
             </div>
           </Reveal>
         ))}

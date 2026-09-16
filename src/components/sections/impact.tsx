@@ -8,9 +8,17 @@ import { cn } from "@/lib/cn";
 import { useContent } from "@/lib/content/ContentProvider";
 import type { Metric } from "@/data/achievements";
 
-function Numeral({ m }: { m: Metric }) {
+// Strategic lead outcomes get a slightly stronger numeral + copper label.
+const LEAD_INDEXES = new Set([0, 2, 6]);
+
+function Numeral({ m, lead }: { m: Metric; lead?: boolean }) {
   return (
-    <div className="font-serif text-[clamp(2.5rem,4.6vw,4rem)] font-normal leading-[0.95] tracking-[-0.01em] text-gradient-steel">
+    <div
+      className={cn(
+        "font-serif font-normal leading-none tracking-[-0.01em] text-gradient-steel",
+        lead ? "text-[clamp(2.75rem,5vw,4.25rem)]" : "text-[clamp(2.25rem,4vw,3.4rem)]",
+      )}
+    >
       {m.text ? (
         <span>
           {m.text}
@@ -23,41 +31,8 @@ function Numeral({ m }: { m: Metric }) {
   );
 }
 
-function Cell({
-  m,
-  span = "lg:col-span-3",
-  detail = true,
-}: {
-  m: Metric;
-  span?: string;
-  detail?: boolean;
-}) {
-  return (
-    <Reveal direction="up" className={cn("col-span-2 sm:col-span-1", span)}>
-      <div className="border-t border-line pt-5">
-        <Numeral m={m} />
-        <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-dim">
-          {m.label}
-        </div>
-        {detail && m.detail ? (
-          <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">{m.detail}</p>
-        ) : null}
-      </div>
-    </Reveal>
-  );
-}
-
 export function Impact() {
-  const { impactMetrics, executiveMetrics } = useContent();
-  const years = executiveMetrics[0];
-  const uptime = impactMetrics[0];
-  const users = impactMetrics[6];
-  const branches = impactMetrics[5];
-  const incidentReduction = impactMetrics[2]; // 40–60%
-  const incidentResponse = impactMetrics[3]; // 2h → 20min
-  const resolution = impactMetrics[1];
-  const vuln = impactMetrics[4];
-  const awareness = impactMetrics[7];
+  const { impactMetrics } = useContent();
 
   return (
     <Section id="impact">
@@ -68,25 +43,39 @@ export function Impact() {
         description="The outcomes that matter — reliability, responsiveness and measurable security improvement delivered across the enterprise."
       />
 
-      <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-12">
-        {/* primary large moments */}
-        <Cell m={years} span="sm:col-span-2 lg:col-span-4" detail={false} />
-        <Cell m={uptime} span="lg:col-span-3" />
-        <Cell m={users} span="lg:col-span-3" />
-        <Cell m={branches} span="lg:col-span-2" />
-
-        {/* featured wide metrics */}
-        <Cell m={incidentReduction} span="sm:col-span-2 lg:col-span-6" detail={false} />
-        <Cell m={incidentResponse} span="lg:col-span-6" detail={false} />
-
-        {/* secondary metrics */}
-        <Cell m={resolution} span="lg:col-span-4" detail={false} />
-        <Cell m={vuln} span="lg:col-span-4" detail={false} />
-        <Cell m={awareness} span="lg:col-span-4" detail={false} />
+      <div className="mt-16 border-t border-line">
+        {impactMetrics.map((m, i) => {
+          const lead = LEAD_INDEXES.has(i);
+          return (
+            <Reveal key={m.label} delay={Math.min(i * 0.03, 0.3)} direction="up">
+              <div
+                className={cn(
+                  "grid gap-3 border-b border-line/70 sm:grid-cols-12 sm:items-baseline sm:gap-10",
+                  lead ? "py-10" : "py-7",
+                )}
+              >
+                <div className="sm:col-span-5">
+                  <Numeral m={m} lead={lead} />
+                  <div
+                    className={cn(
+                      "mt-3 font-mono text-[11px] uppercase tracking-[0.18em]",
+                      lead ? "text-primary-bright" : "text-dim",
+                    )}
+                  >
+                    {m.label}
+                  </div>
+                </div>
+                <p className="max-w-2xl text-[15px] leading-relaxed text-muted sm:col-span-7">
+                  {m.detail}
+                </p>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
 
-      <Reveal direction="up" className="mt-16">
-        <div className="flex items-center gap-4 border-t border-line pt-6">
+      <Reveal direction="up" className="mt-12">
+        <div className="flex items-center gap-4">
           <span aria-hidden className="h-px flex-1 bg-line" />
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-faint">
             Figures as reported · not projected

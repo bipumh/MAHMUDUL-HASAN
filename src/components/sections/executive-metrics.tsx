@@ -19,6 +19,7 @@ export function ExecutiveMetrics() {
           {executiveMetrics.map((m, i) => (
             <Reveal key={m.label} delay={i * 0.05} direction="up">
               <div className="border-t border-line px-1 pt-5">
+                <span aria-hidden className="mb-4 block h-px w-7 bg-primary/60" />
                 <div className="font-serif text-[clamp(1.9rem,3.4vw,2.6rem)] font-normal leading-none tracking-tight text-gradient-steel">
                   {m.text ? (
                     <span>
@@ -32,7 +33,7 @@ export function ExecutiveMetrics() {
                 <div className="mt-3 font-mono text-[10px] uppercase leading-snug tracking-[0.16em] text-muted">
                   {m.label}
                 </div>
-                <div className="mt-1 hidden text-[13px] leading-snug text-muted lg:block">{m.detail}</div>
+                <div className="mt-1 hidden text-[13px] leading-snug text-muted md:block">{m.detail}</div>
               </div>
             </Reveal>
           ))}

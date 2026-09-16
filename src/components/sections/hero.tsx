@@ -76,9 +76,9 @@ export function Hero() {
 
             <motion.h1
               variants={item}
-              className="mt-8 font-serif font-light uppercase leading-[1.04] tracking-[0.005em] text-[clamp(1.9rem,4.4vw,3.4rem)]"
+              className="mt-8 font-serif font-normal uppercase leading-[1.04] tracking-[0.005em] text-[clamp(1.9rem,4.4vw,3.4rem)]"
             >
-              <span className="block">MD. Mahmudul</span>
+              <span className="block text-gradient-steel">MD. Mahmudul</span>
               <span className="block text-gradient-steel">Hasan</span>
             </motion.h1>
 
